@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Search from "../components/Search";
 
 const HomeScreen = () => {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <Search />
     </View>
   );
 };
