@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
-const Search = () => {
+const Search = ({ value, setSearchValue, onFinishEnter }) => {
   return (
     <View style={styles.searchPanel}>
       <Feather style={styles.searchIcon} name="search" color="#535C68" />
@@ -12,6 +12,9 @@ const Search = () => {
         placeholderTextColor="#DAE0E2"
         autoCapitalize="none"
         autoCorrect={false}
+        value={value}
+        onChangeText={setSearchValue}
+        onEndEditing={onFinishEnter}
       />
     </View>
   );
