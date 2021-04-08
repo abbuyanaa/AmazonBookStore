@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import MyHeaderButton from "../components/MyHeaderButton";
 import Search from "../components/Search";
@@ -14,7 +14,7 @@ const HomeScreen = ({ navigation }) => {
           <Item
             title="Цэс"
             iconName="ios-menu"
-            onPress={() => alert("search")}
+            onPress={() => navigation.toggleDrawer()}
           />
         </HeaderButtons>
       ),
