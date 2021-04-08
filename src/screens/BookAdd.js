@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -12,6 +12,31 @@ import FormText from "../components/FormText";
 import * as Animatable from "react-native-animatable";
 
 const BookAdd = () => {
+  const [book, setBook] = useState({
+    name: "Элон Маск",
+    author: "Ашли Ванс",
+    price: "20000",
+    content:
+      "Алон маскийн амьдрал, бизнесийн салбарын хэрхэн оргилд хүрсэн тухай гайхалтай түүхийг өөрийнх нь сэдэвлэн бичсэн гайхалтай ном.",
+    bestseller: true,
+  });
+
+  const checkName = (text) => {
+    setBook({ ...book, name: text });
+  };
+
+  const checkAuthor = (text) => {
+    setBook({ ...book, author: text });
+  };
+
+  const checkPrice = (text) => {
+    setBook({ ...book, price: text });
+  };
+
+  const checkContent = (text) => {
+    setBook({ ...book, content: text });
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: mainColor }}>
       <StatusBar backgroundColor={mainColor} barStyle="dark-content" />
@@ -46,17 +71,23 @@ const BookAdd = () => {
           <FormText
             label="Номын нэрийг оруулна уу"
             placeholder="Номын нэр"
-            icon="edit"
+            icon="book-open"
+            value={book.name}
+            onChangeText={checkName}
           />
           <FormText
             label="Номын зохиогчийг оруулна уу"
             placeholder="Зохиогчийн нэр"
             icon="user"
+            value={book.author}
+            onChangeText={checkAuthor}
           />
           <FormText
             label="Номын үнийг оруулна уу"
             placeholder="Номын үнэ"
             icon="dollar-sign"
+            value={book.price}
+            onChangeText={checkPrice}
           />
           <FormText
             label="Номын тайлбарыг оруулна уу"
@@ -65,6 +96,8 @@ const BookAdd = () => {
             icon="edit"
             multiline
             numberOfLines={10}
+            value={book.content}
+            onChangeText={checkContent}
           />
         </ScrollView>
       </Animatable.View>
