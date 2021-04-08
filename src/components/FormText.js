@@ -30,6 +30,11 @@ const FormText = (props) => {
           }}
         />
       </View>
+      {props.errorShow && (
+        <Text style={{ color: "#E83350", fontSize: 12, marginTop: 5 }}>
+          {props.errorText}
+        </Text>
+      )}
     </View>
   );
 };

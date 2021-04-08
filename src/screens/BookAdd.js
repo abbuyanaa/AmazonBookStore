@@ -18,10 +18,20 @@ const BookAdd = () => {
     price: "20000",
     content:
       "Алон маскийн амьдрал, бизнесийн салбарын хэрхэн оргилд хүрсэн тухай гайхалтай түүхийг өөрийнх нь сэдэвлэн бичсэн гайхалтай ном.",
-    bestseller: true,
+  });
+
+  const [error, setError] = useState({
+    name: false,
+    author: false,
+    price: false,
+    content: false,
   });
 
   const checkName = (text) => {
+    setError({
+      ...error,
+      name: text.length < 5 || text.length > 20,
+    });
     setBook({ ...book, name: text });
   };
 
@@ -30,6 +40,10 @@ const BookAdd = () => {
   };
 
   const checkPrice = (text) => {
+    setError({
+      ...error,
+      price: text < 1000,
+    });
     setBook({ ...book, price: text });
   };
 
@@ -74,6 +88,8 @@ const BookAdd = () => {
             icon="book-open"
             value={book.name}
             onChangeText={checkName}
+            errorText="Номын нэрийн урд тор хаяж 4 үсгээс тогтоно."
+            errorShow={error.name}
           />
           <FormText
             label="Номын зохиогчийг оруулна уу"
@@ -81,6 +97,8 @@ const BookAdd = () => {
             icon="user"
             value={book.author}
             onChangeText={checkAuthor}
+            errorText="Зохиогчийн нэрийн урт 5-15 үсгээс тогтоно."
+            errorShow={error.author}
           />
           <FormText
             label="Номын үнийг оруулна уу"
@@ -88,16 +106,20 @@ const BookAdd = () => {
             icon="dollar-sign"
             value={book.price}
             onChangeText={checkPrice}
+            errorText="Номын үнэ 1000 төгрөгөөс дээш байна."
+            errorShow={error.price}
           />
           <FormText
             label="Номын тайлбарыг оруулна уу"
             placeholder="Номын тайлбар"
-            style={{ fontSize: 12 }}
+            style={{ fontSize: 10 }}
             icon="edit"
             multiline
             numberOfLines={10}
             value={book.content}
             onChangeText={checkContent}
+            errorText="Номын тайлбар 10-1000 тэмдэгтээс тогтоно."
+            errorShow={error.content}
           />
         </ScrollView>
       </Animatable.View>
