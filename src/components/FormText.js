@@ -26,6 +26,7 @@ const FormText = (props) => {
             color: textColor,
             flex: 1,
             marginTop: Platform.OS === "ios" ? 0 : -3,
+            ...props.style,
           }}
         />
       </View>

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { mainColor, lightColor, textColor } from "../../Constants";
 import FormText from "../components/FormText";
+import * as Animatable from "react-native-animatable";
 
 const BookAdd = () => {
   return (
@@ -29,7 +30,9 @@ const BookAdd = () => {
           Та номын мэдээллээ оруулна уу
         </Text>
       </View>
-      <View
+      <Animatable.View
+        animation="fadeInUpBig"
+        duration={1000}
         style={{
           flex: 5,
           paddingVertical: 10,
@@ -60,9 +63,11 @@ const BookAdd = () => {
             placeholder="Номын тайлбар"
             style={{ fontSize: 12 }}
             icon="edit"
+            multiline
+            numberOfLines={10}
           />
         </ScrollView>
-      </View>
+      </Animatable.View>
     </SafeAreaView>
   );
 };
