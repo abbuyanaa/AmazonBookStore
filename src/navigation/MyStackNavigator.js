@@ -1,14 +1,14 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
-
+import { mainColor } from "../../Constants";
 import HomeScreen from "./../screens/HomeScreen";
 
 export default () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "#3498DB" },
+        headerStyle: { backgroundColor: mainColor },
         headerTintColor: "white",
         headerTitleStyle: { fontSize: 22 },
       }}
