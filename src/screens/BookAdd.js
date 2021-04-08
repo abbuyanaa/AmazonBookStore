@@ -12,6 +12,7 @@ import FormText from "../components/FormText";
 import * as Animatable from "react-native-animatable";
 import { Switch } from "react-native-paper";
 import FormSwitch from "../components/FormSwitch";
+import FormPicker from "../components/FormPicker";
 
 const BookAdd = () => {
   const [book, setBook] = useState({
@@ -21,6 +22,7 @@ const BookAdd = () => {
     content:
       "Алон маскийн амьдрал, бизнесийн салбарын хэрхэн оргилд хүрсэн тухай гайхалтай түүхийг өөрийнх нь сэдэвлэн бичсэн гайхалтай ном.",
     bestseller: "Бестсэллэр мөн",
+    category: "Уран зохиол",
   });
 
   const [error, setError] = useState({
@@ -140,6 +142,18 @@ const BookAdd = () => {
             data={["Бестсэллэр мөн", "Бестсэллэр биш"]}
             value={book.bestseller}
             onValueChange={toggleBestseller}
+          />
+
+          <FormPicker
+            label="Номын категори"
+            icon="layers"
+            data={["Уран зохиол", "Шинжлэх ухаан", "Эдийн засаг"]}
+            values={["u", "s", "e"]}
+            value={book.category}
+            onValueChange={(value, index) => {
+              console.log(value);
+              setBook({ ...book, category: value });
+            }}
           />
         </ScrollView>
       </Animatable.View>
