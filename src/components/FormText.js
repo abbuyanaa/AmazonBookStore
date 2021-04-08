@@ -2,6 +2,7 @@ import React from "react";
 import { Platform, StyleSheet, View, TextInput, Text } from "react-native";
 import { textColor } from "../../Constants";
 import { Feather } from "@expo/vector-icons";
+import * as Animatable from "react-native-animatable";
 
 const FormText = (props) => {
   return (
@@ -29,11 +30,20 @@ const FormText = (props) => {
             ...props.style,
           }}
         />
+        {props.errorShow === false && (
+          <Animatable.View animation="bounceIn" duration={500}>
+            <Feather name="check-circle" size={15} color={textColor} />
+          </Animatable.View>
+        )}
       </View>
       {props.errorShow && (
-        <Text style={{ color: "#E83350", fontSize: 12, marginTop: 5 }}>
+        <Animatable.Text
+          animation="fadeInUp"
+          duration={500}
+          style={{ color: "#E83350", fontSize: 12, marginTop: 5 }}
+        >
           {props.errorText}
-        </Text>
+        </Animatable.Text>
       )}
     </View>
   );
