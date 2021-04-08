@@ -10,6 +10,8 @@ import {
 import { mainColor, lightColor, textColor } from "../../Constants";
 import FormText from "../components/FormText";
 import * as Animatable from "react-native-animatable";
+import { Switch } from "react-native-paper";
+import FormSwitch from "../components/FormSwitch";
 
 const BookAdd = () => {
   const [book, setBook] = useState({
@@ -18,6 +20,7 @@ const BookAdd = () => {
     price: "20000",
     content:
       "Алон маскийн амьдрал, бизнесийн салбарын хэрхэн оргилд хүрсэн тухай гайхалтай түүхийг өөрийнх нь сэдэвлэн бичсэн гайхалтай ном.",
+    bestseller: "Бестсэллэр мөн",
   });
 
   const [error, setError] = useState({
@@ -49,6 +52,16 @@ const BookAdd = () => {
 
   const checkContent = (text) => {
     setBook({ ...book, content: text });
+  };
+
+  const toggleBestseller = () => {
+    setBook({
+      ...book,
+      bestseller:
+        book.bestseller === "Бестсэллэр мөн"
+          ? "Бестсэллэр биш"
+          : "Бестсэллэр мөн",
+    });
   };
 
   return (
@@ -115,11 +128,18 @@ const BookAdd = () => {
             style={{ fontSize: 10 }}
             icon="edit"
             multiline
-            numberOfLines={10}
+            numberOfLines={5}
             value={book.content}
             onChangeText={checkContent}
             errorText="Номын тайлбар 10-1000 тэмдэгтээс тогтоно."
             errorShow={error.content}
+          />
+          <FormSwitch
+            label="Бестсэллэр мөн эсэх"
+            icon="trending-up"
+            data={["Бестсэллэр мөн", "Бестсэллэр биш"]}
+            value={book.bestseller}
+            onValueChange={toggleBestseller}
           />
         </ScrollView>
       </Animatable.View>
